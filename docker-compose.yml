@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  application:
+    container_name: "spring-rabbit-server"
+    ports:
+      - "8080"
+    restart: always
+    volumes:
+      - ./:/app
+    networks:
+      rabbit-network:
+        aliases:
+            - "rabbit-app"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - rabbit
+  rabbit:
+    container_name: "rabbitmq-amqp"
+    image: "rabbitmq:3.13.4-management-alpine"
+    ports:
+      - "15672"
+    volumes:
+      - rabbit-volume:/var/lib/rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: "rabbit"
+      RABBITMQ_DEFAULT_PASS: "rabbit"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    restart: always
+    networks:
+      rabbit-network:
+        aliases:
+            - "rabbit-server"
+
+volumes:
+  rabbit-volume:
+    name: "rabbitmq-data"
+    driver: local
+
+networks:
+  rabbit-network:
+    driver: bridge
+    name: "rabbit application network"

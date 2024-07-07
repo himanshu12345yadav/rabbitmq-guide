@@ -48,3 +48,18 @@ kotlin {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+tasks.register<Copy>("dependencies") {
+    from(sourceSets.main.get().runtimeClasspath)
+    into("runtime/")
+
+    doFirst {
+        val runtimeDir = File("runtime")
+        runtimeDir.deleteRecursively()
+        runtimeDir.mkdirs()
+    }
+
+    doLast {
+        File("runtime").deleteRecursively()
+    }
+}
