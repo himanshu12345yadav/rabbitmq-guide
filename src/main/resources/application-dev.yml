@@ -1,0 +1,10 @@
+spring:
+  devtools:
+    restart:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,beans,env,logfile,loggers,metrics
