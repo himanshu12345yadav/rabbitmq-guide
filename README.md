@@ -53,3 +53,14 @@ Along , with this start the spring boot application using another terminal
 ```bash
 .\gradlew bootRun --args="--spring.profiles.active=dev"
 ```
+
+### Use rabbit in docker
+
+To run the rabbit-broker in the docker and application in the host machine.
+
+```bash
+docker-compose run -d --service-ports rabbit
+```
+
+This will run only the rabbit service using the docker configuration . Note that to enable the port mapping its needed
+to use `--service-ports` flag.

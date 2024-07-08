@@ -10,7 +10,7 @@ COPY . .
 EXPOSE 8080
 
 # Give running permission to the development script
-RUN chmod a+x development.sh && ./gradlew dependencies
+RUN chmod +x development.sh && ./gradlew getDependencies
 
 # Start the development server
 

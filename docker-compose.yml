@@ -4,14 +4,14 @@ services:
   application:
     container_name: "spring-rabbit-server"
     ports:
-      - "8080"
+      - "8080:8080"
     restart: always
     volumes:
       - ./:/app
     networks:
       rabbit-network:
         aliases:
-            - "rabbit-app"
+          - "rabbit-app"
     build:
       context: .
       dockerfile: Dockerfile
@@ -21,7 +21,8 @@ services:
     container_name: "rabbitmq-amqp"
     image: "rabbitmq:3.13.4-management-alpine"
     ports:
-      - "15672"
+      - "5672:5672"
+      - "15672:15672"
     volumes:
       - rabbit-volume:/var/lib/rabbitmq
     environment:
@@ -32,7 +33,7 @@ services:
     networks:
       rabbit-network:
         aliases:
-            - "rabbit-server"
+          - "rabbit-server"
 
 volumes:
   rabbit-volume:
@@ -42,4 +43,4 @@ volumes:
 networks:
   rabbit-network:
     driver: bridge
-    name: "rabbit application network"
+    name: "rabbit-application-network"

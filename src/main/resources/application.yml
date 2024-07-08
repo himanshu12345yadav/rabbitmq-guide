@@ -1,3 +1,20 @@
 spring:
   application:
     name: "rabbit"
+
+rabbit:
+  queue:
+    default:
+      name: "queue"
+    json:
+      name: "json_queue"
+  exchange:
+    default:
+      name: "exchange"
+    json:
+      name: "json_exchange"
+  routing:
+    default:
+      key: "routing_key"
+    json:
+      key: "json_routing_key"

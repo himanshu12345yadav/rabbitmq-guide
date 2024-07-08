@@ -25,7 +25,7 @@ repositories {
 }
 
 dependencies {
-//    implementation(libs.spring.amqp)
+    implementation(libs.spring.amqp)
     implementation(libs.spring.starter)
     implementation(libs.jackson.kotlin)
     implementation(libs.kotlin.reflect)
@@ -49,14 +49,14 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-tasks.register<Copy>("dependencies") {
+tasks.register<Copy>("getDependencies") {
     from(sourceSets.main.get().runtimeClasspath)
     into("runtime/")
 
     doFirst {
         val runtimeDir = File("runtime")
         runtimeDir.deleteRecursively()
-        runtimeDir.mkdirs()
+        runtimeDir.mkdir()
     }
 
     doLast {
