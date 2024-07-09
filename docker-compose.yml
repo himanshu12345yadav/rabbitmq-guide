@@ -3,11 +3,14 @@ version: "3.9"
 services:
   application:
     container_name: "spring-rabbit-server"
+    hostname: "rabbit-server"
     ports:
       - "8080:8080"
     restart: always
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
     volumes:
-      - ./:/app
+      - ./src:/app/src
     networks:
       rabbit-network:
         aliases:
@@ -19,6 +22,7 @@ services:
       - rabbit
   rabbit:
     container_name: "rabbitmq-amqp"
+    hostname: "rabbit"
     image: "rabbitmq:3.13.4-management-alpine"
     ports:
       - "5672:5672"

@@ -1,0 +1,26 @@
+# Ignore ide and editor files
+.idea/
+.vscode/
+*.iml
+
+# Ignore build artifacts
+target
+*.jar
+
+#Ignore temporary files
+*~
+.DS_Store
+
+# Ignore logs
+*.log
+
+# Ignore dependency management directories
+.mvn/
+.gradle/
+
+# Ignore Ide-specific files
+.classpath
+.project
+
+# Ignore environment configuration files
+generated/

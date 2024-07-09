@@ -3,7 +3,7 @@ spring:
     restart:
       enabled: true
   rabbitmq:
-    host: localhost
+    host: rabbit
     port: 5672
     username: "rabbit"
     password: "rabbit"
